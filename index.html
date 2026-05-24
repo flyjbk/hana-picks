@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HANA 모멘텀 추천 -- 2026-05-25</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Malgun Gothic', sans-serif; background: #f0f2f5; color: #1f2937; font-size: 14px; }
+
+/* header */
+.hero { background: linear-gradient(135deg, #1a2f5e 0%, #2d4a8a 100%);
+        color: #fff; padding: 36px 24px 28px; text-align: center; }
+.hero-tag  { font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,.5);
+             text-transform: uppercase; margin-bottom: 10px; }
+.hero-title { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+.hero-sub   { font-size: 13px; color: rgba(255,255,255,.6); line-height: 1.7; }
+.hero-date  { display: inline-block; margin-top: 14px; padding: 5px 16px;
+              background: rgba(255,255,255,.12); border-radius: 20px;
+              font-size: 12px; color: rgba(255,255,255,.75); }
+
+/* market bar */
+.mkt-bar  { background: #fff; display: flex; justify-content: center; gap: 32px;
+             padding: 14px 24px; border-bottom: 1px solid #e5e7eb; }
+.mkt-item { text-align: center; }
+.mkt-label { font-size: 11px; color: #9ca3af; margin-bottom: 3px; }
+.mkt-val   { font-size: 20px; font-weight: 700; }
+
+/* content */
+.wrap   { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+
+/* section */
+.section { background: #fff; border-radius: 12px;
+           box-shadow: 0 2px 8px rgba(0,0,0,.06); margin-bottom: 20px; overflow: hidden; }
+.sec-hdr { padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+.sec-hdr-a { background: #1a4480; }
+.sec-hdr-b { background: #1a2f5e; }
+.sec-badge { font-size: 12px; font-weight: 700; color: #fff; }
+.sec-desc  { font-size: 12px; color: rgba(255,255,255,.65); }
+
+/* table */
+table { width: 100%; border-collapse: collapse; }
+th { padding: 9px 12px; font-size: 11px; font-weight: 600; color: #6b7280;
+     border-bottom: 1px solid #e5e7eb; text-align: right; background: #f9fafb; }
+th.l { text-align: left; }
+td { padding: 10px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #f8f9ff; }
+
+td.rank { text-align: center; font-weight: 700; font-size: 16px; color: #1a2f5e; width: 36px; }
+td.name { font-weight: 600; font-size: 13px; }
+td.num  { text-align: right; font-weight: 600; font-size: 13px; }
+td.tgt  { color: #1d4ed8; }
+td.stp  { color: #9ca3af; }
+td.score { text-align: center; font-weight: 700; font-size: 15px; width: 52px; }
+
+.code { font-size: 11px; color: #9ca3af; font-weight: 400; }
+.unit { font-size: 11px; color: #9ca3af; margin-left: 2px; font-weight: 400; }
+.badge-pct { font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 4px;
+             background: #dbeafe; color: #1d4ed8; margin-left: 4px; }
+.badge-pct.red { background: #fee2e2; color: #b91c1c; }
+
+/* strategy box */
+.strat { background: #f8faff; border: 1px solid #e0e7ff; border-radius: 10px;
+         padding: 16px 20px; margin: 0 20px 20px; }
+.strat-title { font-size: 13px; font-weight: 700; color: #1a2f5e; margin-bottom: 10px; }
+.strat-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.strat-item  { background: #fff; border-radius: 8px; padding: 10px 12px;
+               border: 1px solid #e5e7eb; font-size: 12px; color: #374151; line-height: 1.8; }
+.strat-item b { color: #1a2f5e; }
+
+/* stats */
+.stat-grid { display: flex; gap: 12px; flex-wrap: wrap; padding: 16px 20px 20px; }
+.stat-card { flex: 1; min-width: 120px; background: #f9fafb; border: 1px solid #e5e7eb;
+             border-radius: 10px; padding: 14px 16px; text-align: center; }
+.stat-label { font-size: 11px; color: #6b7280; margin-bottom: 6px; }
+.stat-val   { font-size: 26px; font-weight: 700; color: #1a2f5e; }
+.stat-unit  { font-size: 13px; font-weight: 400; color: #9ca3af; }
+
+/* cta */
+.cta { background: linear-gradient(135deg, #1a2f5e, #2d4a8a); color: #fff;
+       border-radius: 12px; padding: 28px 24px; text-align: center; margin-bottom: 20px; }
+.cta-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.cta-sub   { font-size: 13px; color: rgba(255,255,255,.7); margin-bottom: 18px; line-height: 1.7; }
+.cta-btn   { display: inline-block; padding: 11px 28px; background: #fff; color: #1a2f5e;
+             font-weight: 700; font-size: 14px; border-radius: 8px; text-decoration: none; }
+
+/* disclaimer */
+.disc { font-size: 11px; color: #9ca3af; text-align: center; line-height: 1.8;
+        padding: 0 0 24px; }
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 22px; }
+  .mkt-bar { gap: 20px; }
+  .strat-grid { grid-template-columns: 1fr; }
+  .stat-grid { gap: 8px; }
+  th, td { padding: 8px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">HANA Momentum System v2.0</div>
+  <div class="hero-title">오늘의 모멘텀 추천 종목</div>
+  <div class="hero-sub">KIS API 기반 KOSPI·KOSDAQ 기술적 분석<br>RSI + 볼린저밴드 + 이동평균 + 거래량 모멘텀 점수</div>
+  <div class="hero-date">매수 기준일: 2026-05-25 &nbsp;|&nbsp; 생성: 2026-05-24 21:28</div>
+</div>
+
+<div class="mkt-bar">
+  <div class="mkt-item">
+    <div class="mkt-label">KOSPI</div>
+    <div class="mkt-val" style="color:#2f9e44">+0.24%</div>
+  </div>
+  <div class="mkt-item">
+    <div class="mkt-label">KOSDAQ</div>
+    <div class="mkt-val" style="color:#2f9e44">+0%</div>
+  </div>
+  <div class="mkt-item">
+    <div class="mkt-label">분석일</div>
+    <div class="mkt-val" style="font-size:14px;padding-top:4px">2026-05-22</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- Track A -->
+<div class="section">
+  <div class="sec-hdr sec-hdr-a">
+    <span class="sec-badge">Track A &nbsp; 대형주 안정형</span>
+    <span class="sec-desc">코스피 시총 Top30 한정 | 목표 +3% / 손절 -5%</span>
+  </div>
+  <table>
+    <tr><th class="l" style="width:36px">#</th><th class="l">종목</th><th>매수 기준가</th><th>목표가</th><th>손절가</th><th>점수</th></tr>
+    <tr>
+  <td class='rank'>1</td>
+  <td class='name'>SK텔레콤<br><span class='code'>017670</span></td>
+  <td class='num'>102,800<span class='unit'>원</span></td>
+  <td class='num tgt'>105,884<span class='unit'>원</span><span class='badge-pct'>+3%</span></td>
+  <td class='num stp'>97,660<span class='unit'>원</span><span class='badge-pct red'>-5%</span></td>
+  <td class='score' style='color:#374151'>62</td>
+</tr><tr>
+  <td class='rank'>2</td>
+  <td class='name'>LG전자<br><span class='code'>066570</span></td>
+  <td class='num'>237,000<span class='unit'>원</span></td>
+  <td class='num tgt'>244,110<span class='unit'>원</span><span class='badge-pct'>+3%</span></td>
+  <td class='num stp'>225,150<span class='unit'>원</span><span class='badge-pct red'>-5%</span></td>
+  <td class='score' style='color:#374151'>59</td>
+</tr>
+  </table>
+  <div class="strat">
+    <div class="strat-title">Track A 전략 설명</div>
+    <div class="strat-grid">
+      <div class="strat-item"><b>대상</b>: 코스피 시가총액 상위 30개 종목만 분석<br><b>목표</b>: 매수 후 5거래일 내 +3% 조기 청산<br><b>보조</b>: 미달 시 14일 홀딩 +7% 목표</div>
+      <div class="strat-item"><b>특징</b>: 변동성 낮고 안정적<br><b>적합</b>: 리스크 관리 우선 투자자<br><b>신호</b>: MA5>MA20 정배열 + 거래량 급증</div>
+    </div>
+  </div>
+</div>
+
+<!-- Track B -->
+<div class="section">
+  <div class="sec-hdr sec-hdr-b">
+    <span class="sec-badge">Track B &nbsp; 전체 모멘텀</span>
+    <span class="sec-desc">KOSPI + KOSDAQ 전종목 | 목표 +5% / 손절 -5%</span>
+  </div>
+  <table>
+    <tr><th class="l" style="width:36px">#</th><th class="l">종목</th><th>매수 기준가</th><th>목표가</th><th>손절가</th><th>점수</th></tr>
+    <tr>
+  <td class='rank'>1</td>
+  <td class='name'>LG<br><span class='code'>003550 · KOSPI</span></td>
+  <td class='num'>118,500<span class='unit'>원</span></td>
+  <td class='num tgt'>124,425<span class='unit'>원</span><span class='badge-pct'>+5%</span></td>
+  <td class='num stp'>112,575<span class='unit'>원</span><span class='badge-pct red'>-5%</span></td>
+  <td class='score' style='color:#374151'>68</td>
+</tr><tr>
+  <td class='rank'>2</td>
+  <td class='name'>SK텔레콤<br><span class='code'>017670 · KOSPI</span></td>
+  <td class='num'>102,800<span class='unit'>원</span></td>
+  <td class='num tgt'>107,940<span class='unit'>원</span><span class='badge-pct'>+5%</span></td>
+  <td class='num stp'>97,660<span class='unit'>원</span><span class='badge-pct red'>-5%</span></td>
+  <td class='score' style='color:#374151'>62</td>
+</tr>
+  </table>
+  <div class="strat">
+    <div class="strat-title">Track B 전략 설명</div>
+    <div class="strat-grid">
+      <div class="strat-item"><b>대상</b>: KOSPI + KOSDAQ 전종목 (약 170개)<br><b>목표</b>: 5거래일 내 +5% 조기 청산<br><b>보조</b>: 미달 시 14일 홀딩 +10% 목표</div>
+      <div class="strat-item"><b>특징</b>: 높은 달성률, 변동성 수용 필요<br><b>적합</b>: 단기 수익 추구 투자자<br><b>신호</b>: RSI + BB%B + 거래량 복합 점수</div>
+    </div>
+  </div>
+</div>
+
+<!-- backtest stats -->
+<div class="section">
+  <div class="sec-hdr" style="background:#059669">
+    <span class="sec-badge">백테스트 성과</span>
+    <span class="sec-desc">과거 추천 종목 실제 달성률 기반</span>
+  </div>
+  <div class='stat-grid'>
+      <div class='stat-card'><div class='stat-label'>분석 종목 수</div><div class='stat-val'>179<span class='stat-unit'>개</span></div></div>
+      <div class='stat-card'><div class='stat-label'>5거래일 +5% 달성률</div><div class='stat-val'>0<span class='stat-unit'>%</span></div></div>
+      <div class='stat-card'><div class='stat-label'>14일 +10% 달성률</div><div class='stat-val'>0<span class='stat-unit'>%</span></div></div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-title">이 분석을 내 종목에도 적용하고 싶다면</div>
+  <div class="cta-sub">관심 종목 추가 · 보유 종목 손절 알림 · 텔레그램 자동 발송<br>개인 맞춤형 알림 봇 서비스를 크몽에서 신청하세요</div>
+  <a class="cta-btn" href="#">크몽에서 서비스 보기 (링크 준비중)</a>
+</div>
+
+<div class="disc">
+  본 페이지는 참고용 정보 제공 목적이며 투자를 권유하지 않습니다.<br>
+  모든 투자 결정은 본인 판단 하에 하시기 바랍니다.<br>
+  HANA Momentum System &nbsp;|&nbsp; 2026-05-24 21:28 생성
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
